@@ -1,5 +1,5 @@
 pipeline{
-    agent any{
+    agent any 
         tools{
             maven 'MAVEN'
         }
@@ -8,7 +8,6 @@ pipeline{
                 script{
                     sh "mvn validate"
                     sh "mvn test"
-                }
             }
         }
     }
