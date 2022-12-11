@@ -25,5 +25,12 @@ pipeline{
                             }
                         }
             }
+            stage("quality gate pass"){
+                steps{
+                    script{
+                        waitForQualityGate abortPipeline: false, credentialsId: 'sonar-id'
+                    }
+                }
+            }
         }
     }
