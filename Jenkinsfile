@@ -11,7 +11,7 @@ pipeline{
                         sh "mvn test"
                         sh "mvn compile"
                         sh "mvn verify"
-                        sh "mvn install"
+                        
                         }
                 }
             }
