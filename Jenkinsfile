@@ -24,7 +24,9 @@ pipeline{
                                     -Dsonar.login=sqp_25b27fc8dc5db466aa19d99a0407148bc187c8c3'
                             }
                         }
+                    }
             }
+
             stage("quality gate pass"){
                 steps{
                     script{withSonarQubeEnv(credentialsId: 'sonar-id'){
