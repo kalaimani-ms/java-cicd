@@ -15,10 +15,14 @@ pipeline{
                         }
                 }
             }
-            stage("sonarqube_analysis"){
-                        def mvn = tool 'MAVEN';
-                        withSonarQubeEnv() {
-                        sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=java"
+            stage("sonarqube_analysis"){        
+                        steps{
+                            script{
+                                def mvn = tool 'MAVEN';
+                                withSonarQubeEnv() {
+                                sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=java"
+                            }
+                        }
             }
         }
     }
