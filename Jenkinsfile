@@ -12,9 +12,13 @@ pipeline{
                         sh "mvn compile"
                         sh "mvn verify"
                         sh "mvn install"
-                        
                         }
                 }
+            }
+            stage("sonarqube_analysis"){
+                        def mvn = tool 'Default Maven';
+                        withSonarQubeEnv() {
+                        sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=java"
             }
         }
     }
