@@ -31,6 +31,8 @@ pipeline{
                 steps{
                     script{withSonarQubeEnv(credentialsId: 'sonar-id'){
                         waitForQualityGate abortPipeline: true, credentialsId: 'sonar-id'
+
+                        
                     }
                 }
             }
