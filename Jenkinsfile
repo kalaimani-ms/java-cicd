@@ -19,9 +19,9 @@ pipeline{
                         steps{
                             script{withSonarQubeEnv(credentialsId: 'sonar-id'){
                                 sh 'mvn clean verify sonar:sonar \
-                                    -Dsonar.projectKey=maven-project \
-                                    -Dsonar.host.url=http://3.108.238.160:9000 \
-                                    -Dsonar.login=sqp_25b27fc8dc5db466aa19d99a0407148bc187c8c3'
+                                    -Dsonar.projectKey=javaapp \
+                                    -Dsonar.host.url=http://3.108.236.31:9000 \
+                                    -Dsonar.login=sqp_0b6ff490957ba48b628928630d714f1a3d97cefb'
                             }
                         }
                     }
@@ -30,7 +30,7 @@ pipeline{
             stage("quality gate pass"){
                 steps{
                     script{withSonarQubeEnv(credentialsId: 'sonar-id'){
-                        waitForQualityGate abortPipeline: false, credentialsId: 'sonar-id'
+                        waitForQualityGate abortPipeline: true, credentialsId: 'sonar-id'
                     }
                 }
             }
