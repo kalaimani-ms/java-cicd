@@ -17,7 +17,7 @@ pipeline{
             }
             stage("sonarqube_analysis"){        
                         steps{
-                            script{
+                            script{withSonarQubeEnv(credentialsId: 'sonar-id'){
                                 sh 'mvn clean verify sonar:sonar \
                                     -Dsonar.projectKey=maven-project \
                                     -Dsonar.host.url=http://3.108.238.160:9000 \
@@ -27,7 +27,7 @@ pipeline{
             }
             stage("quality gate pass"){
                 steps{
-                    script{
+                    script{withSonarQubeEnv(credentialsId: 'sonar-id'){
                         waitForQualityGate abortPipeline: false, credentialsId: 'sonar-id'
                     }
                 }
